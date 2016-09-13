@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.16" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Noticia+Text:400,700|Marcellus+SC'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <link rel="stylesheet" href="http://trunglen.github.io/wego24docs/css/styles.css">
+    <link rel="stylesheet" href="http://trunglen.github.io/wego24docs/css/custom.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://trunglen.github.io/wego24docs/index.xml">
+
+    
+    <title>Shipment Api - Wego24 User Guide</title>
+    <meta property='og:title' content="Shipment Api - Wego24 User Guide">
+    <meta property="og:type" content="article">
+    
+
+    <meta property="og:url" content="http://trunglen.github.io/wego24docs/api/shipment/">
+    
+    <meta property="og:image" content="http://trunglen.github.io/wego24docs/images/shipment.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"http:\/\/trunglen.github.io\/wego24docs\/"
+    },
+    "headline": "Shipment Api |  ",
+    "image": {
+      "@type": "ImageObject",
+      "url": "",
+      "height": 700,
+      "width": 700
+    },
+    "datePublished": "2016-09-13T11:07:55JST",
+    "dateModified": "2016-09-13T11:07:55JST",
+    "author": {
+      "@type": "Person",
+      "name": "",
+      "image": "http:\/\/trunglen.github.io\/wego24docs\/images/logo.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "http:\/\/trunglen.github.io\/wego24docs\/images/logo.png",
+        "height": 60,
+        "width": 60
+      }
+    },
+    "description": ""
+  }
+</script>
+</head>
+
+<body>
+
+  <header class="l-header">
+    <div class="p-logo">
+      <a href="http://trunglen.github.io/wego24docs/">Wego24 User Guide</a>
+    </div>
+  </header>
+
+
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-9">
+
+      <article class="single">
+        <div class="body">
+          
+
+<h2 id="shipment-api">Shipment API</h2>
+
+<h3 id="new-shipment">New Shipment</h3>
+
+<p><code>POST /api/shipment/new?access_token=&lt;access_token&gt;</code></p>
+
+<ul>
+<li>Currency: &ldquo;dong&rdquo;, &ldquo;usd&rdquo;</li>
+<li>Payment At: &ldquo;picked_up&rdquo;, &ldquo;delivered&rdquo;, &ldquo;other&rdquo;</li>
+<li>After: <code>timestamp</code></li>
+<li>Before: <code>timestamp</code></li>
+</ul>
+
+<p>Request body:</p>
+
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;Giao nhận 1&quot;,
+  &quot;content&quot;: &quot;Nội dung đơn hàng&quot;,
+  &quot;currency&quot;: &quot;dong&quot;,
+  &quot;private&quot;: false,
+  &quot;payment_at&quot;: &quot;delivered&quot;,
+  &quot;origin&quot;: {
+    &quot;lat&quot;: 58.01,
+    &quot;lng&quot;: 105.98,
+    &quot;address&quot;: &quot;125 Chùa Bộc&quot;,
+    &quot;phone&quot;: &quot;090123456&quot;,
+    &quot;at&quot;: 1470898469
+  },
+  &quot;items&quot;: [
+    {
+      &quot;destination&quot;: {
+        &quot;lat&quot;: 60.02,
+        &quot;lng&quot;: 106.21,
+        &quot;address&quot;: &quot;30 Huỳnh Thúc Kháng&quot;,
+        &quot;phone&quot;: &quot;090123456&quot;,
+        &quot;at&quot;: 1470898469
+      },
+      &quot;name&quot;: &quot;Hộp bánh&quot;,
+      &quot;notes&quot;: &quot;Ghi chú&quot;,
+      &quot;budget&quot;: 30000,
+      &quot;deposit&quot;: 60000,
+      &quot;weight&quot;: 0.5,
+      &quot;dimensions&quot;: {
+        &quot;width&quot;: 0.5,
+        &quot;height&quot;: 0.5,
+        &quot;depth&quot;: 0.1
+      }
+    }
+  ]
+}
+</code></pre>
+
+<p>Response data: `<shipment object></p>
+
+<h3 id="get-shipment">Get Shipment</h3>
+
+<p><code>GET /api/shipment/get/:id</code>
+Response data: <code>&lt;shipment object&gt;</code></p>
+
+<h3 id="update-shipment">Update Shipment</h3>
+
+<p><code>POST /api/shipment/update/:id</code>
+Request body: <code>&lt;shipment data&gt;</code>
+Response data: <code>&lt;shipment object&gt;</code></p>
+
+<h3 id="delete-shipment">Delete Shipment</h3>
+
+<p><code>POST /api/shipment/delete/:id</code>
+Response data: <code>null</code></p>
+
+<h2 id="my-shipment">My shipment</h2>
+
+<p><code>GET /api/shipment/mine</code>
+Response data: <code>array of &lt;shipment&gt;</code></p>
+
+        </div>
+
+        <aside>
+          <section>
+            <div>
+              <div class="p-share">
+                <a href="http://www.facebook.com/sharer.php?src=bm&u=http%3a%2f%2ftrunglen.github.io%2fwego24docs%2fapi%2fshipment%2f&t=Shipment%20Api" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+                <a href="http://twitter.com/intent/tweet?url=http%3a%2f%2ftrunglen.github.io%2fwego24docs%2fapi%2fshipment%2f&text=Shipment%20Api&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+                <a href="https://plus.google.com/share?url=http%3a%2f%2ftrunglen.github.io%2fwego24docs%2fapi%2fshipment%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+                <a href="http://getpocket.com/edit?url=http%3a%2f%2ftrunglen.github.io%2fwego24docs%2fapi%2fshipment%2f&title=Shipment%20Api" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+              </div>
+            </div>
+          </section>
+
+          
+          
+          
+        </aside>
+
+      </article>
+
+    </div>
+    <div class="col-md-3">
+      <aside class="site">
+
+  
+  <section>
+    <header>Table Of Contents</header>
+    <div><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#shipment-api">Shipment API</a>
+<ul>
+<li><a href="#new-shipment">New Shipment</a></li>
+<li><a href="#get-shipment">Get Shipment</a></li>
+<li><a href="#update-shipment">Update Shipment</a></li>
+<li><a href="#delete-shipment">Delete Shipment</a></li>
+</ul></li>
+<li><a href="#my-shipment">My shipment</a></li>
+</ul></li>
+</ul>
+</nav></div>
+  </section>
+  
+
+  
+
+  <section>
+    <header>LatestPosts</header>
+    <div>
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/authentication/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/authen.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Authentication Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/setting/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/setting.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Setting Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/protocol/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/protocol1.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Protocol Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/shipment/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/shipment.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Shipment Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/static/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/static.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Static Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/user/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/user.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">User Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/wmap/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/wmap.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Wmap Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+    </div>
+  </section>
+
+  
+  <section>
+    <header>category</header>
+    <div>
+      <ul>
+        
+      </ul>
+    </div>
+  </section>
+  
+  <section>
+    <header>tag</header>
+    <div>
+      <ul>
+        
+      </ul>
+    </div>
+  </section>
+  
+
+</aside>
+
+    </div>
+  </div>
+</div>
+
+
+<footer class="l-footer">
+  <p>&copy; 2016 Wego24 User Guide</p>
+  <p>Powered by <a href="http://gohugo.io" target="_blank" rel="nofollow">Hugo</a>, Theme <a href="https://github.com/dim0627/hugo_theme_robust" target="_blank" rel="nofollow">robust</a> designed by <a href="http://yet.unresolved.xyz" target="_blank" rel="nofollow">Daisuke Tsuji</a></p>
+</footer>
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+  </body>
+</html>
+

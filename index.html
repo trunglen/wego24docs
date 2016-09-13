@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.16" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Noticia+Text:400,700|Marcellus+SC'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <link rel="stylesheet" href="http://trunglen.github.io/wego24docs/css/styles.css">
+    <link rel="stylesheet" href="http://trunglen.github.io/wego24docs/css/custom.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://trunglen.github.io/wego24docs/index.xml">
+
+    
+    <title>Wego24 User Guide</title>
+    <meta property='og:title' content="Wego24 User Guide">
+    <meta property="og:type" content="website">
+    
+
+    <meta property="og:url" content="http://trunglen.github.io/wego24docs/">
+    
+    
+
+
+</head>
+
+<body>
+
+  <header class="l-header">
+    <div class="p-logo">
+      <a href="http://trunglen.github.io/wego24docs/">Wego24 User Guide</a>
+    </div>
+  </header>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+
+      <div class="row">
+        
+        
+        <div class="col-sm-4">
+          <article class="grid">
+  <a href="http://trunglen.github.io/wego24docs/api/authentication/">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/authen.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Authentication Api</h2>
+      <div class="summary">Authenticaton Các api liên quan đến xác thực phải hạn chế khả năng bị lạm dụng. Danh sách Authenticaton API GET /api/auth/check/phone/:phone_number GET /api/auth/check/email/:email GET /api/auth/check/facebook/:facebook_id POST /api/auth/signup?role=&lt;role&gt; POST /api/auth/login POST /api/auth/login_facebook POST /api/auth/logout POST /api/auth/reset_password Check Phone Number / Email GET /api/auth/check/phone/:phone_number GET /api/auth/check/email/:email GET /api/auth/check/facebook/:facebook_id Response data: { &quot;exists&quot;: &quot;true/false&quot;, &quot;verified&quot;: &quot;true/false&quot; } Tạo key mới (login) Login with email POST /api/auth/login Cần nhập phone hoặc email Body: { &quot;phone&quot;: &quot;&quot; &quot;email&quot;: &quot;nguyenvana@gmail.com&quot;, &quot;password&quot;: &quot;123456&quot;, &quot;role&quot;: &quot;*carrier/customer &lt;- required&quot; } Response Data: &lt;user profile&gt; Login with Facebook POST /api/auth/login_facebook Body: { &quot;facebook_id&quot;: &quot;1232234234324&quot;, &quot;facebook_token&quot;: &quot;123afsdfsfef2132&quot;, &quot;role&quot;: &quot;*carrier/customer &lt;- required&quot; } Response Data: &lt;user profile&gt; Hủy key (Logout) Chú y: Client không tiếp tục sử dụng key sau khi logout POST /api/auth/logout Query: access_token=&lt;key&gt; Đăng ký POST /api/auth/signup?role=&lt;role&gt; Params: role để đăng nhập.</div>
+    </footer>
+  </a>
+</article>
+
+        </div>
+        
+        
+        
+        <div class="col-sm-4">
+          <article class="grid">
+  <a href="http://trunglen.github.io/wego24docs/api/setting/">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/setting.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Setting Api</h2>
+      <div class="summary">Default Setting Google Map API: gmap.wego24.com Wego Map API: wmap.wego24.com Auth,User API: api.wego24.com Dev Server Google Map API: 203.162.123.63:3001 Wego Map API: 203.162.123.63:3002 Auth,User API: 203.162.123.63:3003 Get Setting By Location Request: wego24.com/api/setting?lat=&lt;lat&gt;&amp;lng=&lt;lng&gt; Sample Response: { &quot;data_center&quot;: { &quot;api&quot;: &quot;api.wego24.com&quot;, &quot;gmap: &quot;gmap.wego24.com&quot;, &quot;wmap: &quot;wmap.wego24.com&quot; } }</div>
+    </footer>
+  </a>
+</article>
+
+        </div>
+        
+        
+        
+        <div class="col-sm-4">
+          <article class="grid">
+  <a href="http://trunglen.github.io/wego24docs/api/protocol/">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/protocol1.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Protocol Api</h2>
+      <div class="summary">Protocol HTTP Request Public request bao gồm các request không cần xác thực như login, reset_password, &hellip; Private request bao gồm các request mà cần xác thực người yêu cầu. Ví dụ: update profile, đổi mật khẩu, thêm đơn hàng,&hellip; Tất cả private request cần gửi key kèm theo. Client nhận key ở trong response nếu thực hiện thành công một số api trong phần Authenticate. Response { &quot;status&quot;: &quot;success/error&quot;,</div>
+    </footer>
+  </a>
+</article>
+
+        </div>
+        
+        
+        
+        <div class="col-sm-4">
+          <article class="grid">
+  <a href="http://trunglen.github.io/wego24docs/api/shipment/">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/shipment.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Shipment Api</h2>
+      <div class="summary">Shipment API New Shipment POST /api/shipment/new?access_token=&lt;access_token&gt; Currency: &ldquo;dong&rdquo;, &ldquo;usd&rdquo; Payment At: &ldquo;picked_up&rdquo;, &ldquo;delivered&rdquo;, &ldquo;other&rdquo; After: timestamp Before: timestamp Request body: { &quot;title&quot;: &quot;Giao nhận 1&quot;, &quot;content&quot;: &quot;Nội dung đơn hàng&quot;, &quot;currency&quot;: &quot;dong&quot;, &quot;private&quot;: false, &quot;payment_at&quot;: &quot;delivered&quot;, &quot;origin&quot;: { &quot;lat&quot;: 58.01, &quot;lng&quot;: 105.98, &quot;address&quot;: &quot;125 Chùa Bộc&quot;, &quot;phone&quot;: &quot;090123456&quot;, &quot;at&quot;: 1470898469 }, &quot;items&quot;: [ { &quot;destination&quot;: { &quot;lat&quot;: 60.02, &quot;lng&quot;: 106.21, &quot;address&quot;: &quot;30 Huỳnh Thúc Kháng&quot;, &quot;phone&quot;: &quot;090123456&quot;, &quot;at&quot;: 1470898469 },</div>
+    </footer>
+  </a>
+</article>
+
+        </div>
+        
+        
+        
+        <div class="col-sm-4">
+          <article class="grid">
+  <a href="http://trunglen.github.io/wego24docs/api/static/">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/static.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Static Api</h2>
+      <div class="summary">Static Server Avatar GET /static/avatar/&lt;userid&gt; Shipment List images: GET /static/shipment/&lt;shipmentID&gt;/</div>
+    </footer>
+  </a>
+</article>
+
+        </div>
+        
+        
+        
+        <div class="col-sm-4">
+          <article class="grid">
+  <a href="http://trunglen.github.io/wego24docs/api/user/">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/user.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">User Api</h2>
+      <div class="summary">User API User Profile includes: - user_id: string - phone: string - pverified: boolean - fb_id: string - fb_token: string - fname: string - lname: string - email: string Danh sách User API: GET /api/user/profile POST /api/user/profile POST /api/user/send_phone_code POST /api/user/verify_phone POST /api/user/change_password POST /api/user/avatar Get User Info GET /api/user/profile Response Data: &lt;user profile&gt; Update User Info POST /api/user/profile Body: { &quot;phone&quot;: &quot;*091-----&quot;, &quot;email&quot;: &quot;*nguyenvana@gmail.com&quot;, &quot;password&quot;: &quot;*&quot;, &quot;fb_id&quot;: &quot;&quot;, &quot;fk_token&quot;:</div>
+    </footer>
+  </a>
+</article>
+
+        </div>
+        
+        
+        
+        <div class="col-sm-4">
+          <article class="grid">
+  <a href="http://trunglen.github.io/wego24docs/api/wmap/">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/wmap.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Wmap Api</h2>
+      <div class="summary">Carrier Socket Connect to ws://&lt;wmap_host&gt;/wmap/carrier/join?access_token=&lt;access_token&gt; Example: ws://203.162.123.63:3002/wmap/carrier/join?access_token=MHJNaali5bJvbYb49jGRo97QQFSt636Kh9JRKlSWojW3vobWZVt4GN3QtlZLUUcvpmHCUN7w9USazD96 Echo (for Test/Ping) Request: /echo &lt;data&gt; Response: /echo &lt;received data&gt; Example: /echo 123 -&gt; /echo 123 Set Carrier location type Point = {&quot;lat&quot;: &lt;float&gt;,&quot;lng&quot;:&lt;float&gt;,&quot;time&quot;:&lt;time stamp&gt;} Request: /carrier/at &lt;Array of Point&gt; Các Point sắp xếp theo thứ tự tăng dần thời gian. Như vậy, Point cuối cùng chứa vị trí mới nhất Response: /carrier/at &lt;len of recieved locations Example: /carrier/at [{&quot;lat&quot;:10,&quot;lng&quot;:20,&quot;time&quot;:14235346456},{&quot;lat&quot;:10.01,&quot;lng&quot;:20,&quot;time&quot;:14235346460}] -&gt; /carrier/at 2</div>
+    </footer>
+  </a>
+</article>
+
+        </div>
+        
+        
+      </div>
+
+      
+
+
+    </div>
+
+    <div class="col-md-3">
+      <aside class="site">
+
+  
+
+  
+
+  <section>
+    <header>LatestPosts</header>
+    <div>
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/authentication/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/authen.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Authentication Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/setting/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/setting.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Setting Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/protocol/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/protocol1.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Protocol Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/shipment/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/shipment.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Shipment Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/static/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/static.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Static Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/user/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/user.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">User Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+      <article class="li">
+  <a href="http://trunglen.github.io/wego24docs/api/wmap/" class="clearfix">
+    <div class="image" style="background-image: url(http://trunglen.github.io/wego24docs/images/wmap.png);"></div>
+    <footer>
+      <div class="date">
+        <time>Tue, Sep 13, 2016</time>
+      </div>
+      <h2 class="title">Wmap Api</h2>
+    </footer>
+  </a>
+</article>
+
+      
+    </div>
+  </section>
+
+  
+  <section>
+    <header>category</header>
+    <div>
+      <ul>
+        
+      </ul>
+    </div>
+  </section>
+  
+  <section>
+    <header>tag</header>
+    <div>
+      <ul>
+        
+      </ul>
+    </div>
+  </section>
+  
+
+</aside>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<footer class="l-footer">
+  <p>&copy; 2016 Wego24 User Guide</p>
+  <p>Powered by <a href="http://gohugo.io" target="_blank" rel="nofollow">Hugo</a>, Theme <a href="https://github.com/dim0627/hugo_theme_robust" target="_blank" rel="nofollow">robust</a> designed by <a href="http://yet.unresolved.xyz" target="_blank" rel="nofollow">Daisuke Tsuji</a></p>
+</footer>
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+  </body>
+</html>
+
